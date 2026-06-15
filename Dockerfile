@@ -19,6 +19,14 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     pipx \
     build-essential \
+    jq \
+    ffmpeg \
+    sqlite3 \
+    tmux \
+    htop \
+    tree \
+    zip \
+    unzip \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
@@ -48,6 +56,7 @@ RUN mkdir -p -m 755 /etc/apt/keyrings && \
     apt-get install gh -y && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Hugging Face CLI globally via pipx
+# Install Hugging Face CLI and uv globally via pipx
 RUN pipx install huggingface-hub && \
+    pipx install uv && \
     chmod -R a+rx /opt/pipx

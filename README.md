@@ -13,7 +13,9 @@ This container dynamically installs the latest stable versions of the following 
 - **Git**
 - **GitHub CLI** (`gh`)
 - **Hugging Face CLI** (`hf`)
+- **uv** (Extremely fast Python package and project manager)
 - **Docker CLI** (Enables Docker-out-of-Docker when `/var/run/docker.sock` is mounted)
+- **Utilities**: `ffmpeg`, `sqlite3`, `jq`, `tmux`, `htop`, `tree`, `zip`, `unzip`
 
 ## Usage
 
