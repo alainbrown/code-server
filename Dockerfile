@@ -27,14 +27,16 @@ RUN apt-get update && apt-get install -y \
     tree \
     zip \
     unzip \
+    bubblewrap \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
 RUN curl -fsSL https://get.docker.com | sh
 
-# Install Node.js (Latest Stable)
+# Install Node.js (Latest Stable) and pnpm
 RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
     apt-get install -y nodejs && \
+    npm install -g pnpm && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Go (dynamically grabs the latest version)
