@@ -66,3 +66,8 @@ RUN pipx install huggingface-hub && \
 # Install Claude and Codex CLIs
 RUN npm install -g @anthropic-ai/claude-code && \
     curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh
+
+# Install Playwright and its dependencies
+RUN npm install -g playwright && \
+    npx playwright install --with-deps && \
+    rm -rf /var/lib/apt/lists/*
