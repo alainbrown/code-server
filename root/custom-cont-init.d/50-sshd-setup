@@ -7,12 +7,31 @@ fi
 
 install -d -m 0755 /run/sshd
 ssh-keygen -A
+usermod -s /bin/bash abc
 
 # Harden: key-only auth, no root, abc user only
 cat > /etc/ssh/sshd_config.d/custom.conf <<EOF
 PasswordAuthentication no
 PermitRootLogin no
 AllowUsers abc
+EOF
+
+# Expose Docker ENV vars to SSH login shells
+cat > /etc/profile.d/docker-env.sh <<'EOF'
+export RUSTUP_HOME=/opt/rust
+export CARGO_HOME=/opt/rust
+export PIPX_HOME=/opt/pipx
+export PIPX_BIN_DIR=/usr/local/bin
+export PATH="$PATH:/usr/local/go/bin:/opt/rust/bin"
+EOF
+
+# Also set vars for non-interactive SSH commands (e.g. ssh host "go version")
+cat >> /etc/environment <<'EOF'
+RUSTUP_HOME=/opt/rust
+CARGO_HOME=/opt/rust
+PIPX_HOME=/opt/pipx
+PIPX_BIN_DIR=/usr/local/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/opt/rust/bin
 EOF
 
 sudo -u abc -H ssh-import-id-gh "$GITHUB_USER"
