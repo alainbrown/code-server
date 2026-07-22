@@ -77,6 +77,6 @@ RUN npm install -g playwright && \
 
 # SSH support (optional, activated by setting GITHUB_USER)
 COPY root/custom-cont-init.d/50-sshd-setup /custom-cont-init.d/50-sshd-setup
-COPY root/custom-services.d/sshd/run /custom-services.d/sshd/run
-RUN chmod 0755 /custom-cont-init.d/50-sshd-setup /custom-services.d/sshd/run
+COPY root/custom-services.d/sshd /custom-services.d/sshd
+RUN chmod 0755 /custom-cont-init.d/50-sshd-setup /custom-services.d/sshd
 EXPOSE 22
