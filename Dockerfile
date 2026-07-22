@@ -66,8 +66,9 @@ RUN pipx install huggingface-hub && \
     pipx install uv && \
     chmod -R a+rx /opt/pipx
 
-# Install Claude and Codex CLIs
+# Install Claude, Codex, and Pi CLIs
 RUN npm install -g @anthropic-ai/claude-code && \
+    npm install -g --ignore-scripts @earendil-works/pi-coding-agent && \
     curl -fsSL https://chatgpt.com/codex/install.sh | CODEX_NON_INTERACTIVE=1 sh
 
 # Install Playwright and its dependencies
