@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+if [ -z "$GITHUB_USER" ]; then
+    sleep infinity
+fi
+
+exec /usr/sbin/sshd -D -e

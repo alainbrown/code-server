@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv bash
+
+if [ -z "$GITHUB_USER" ]; then
+    echo "[sshd] GITHUB_USER not set — SSH disabled"
+    exit 0
+fi
+
+install -d -m 0755 /run/sshd
+ssh-keygen -A
+
+# Harden: key-only auth, no root, abc user only
+cat > /etc/ssh/sshd_config.d/custom.conf <<EOF
+PasswordAuthentication no
+PermitRootLogin no
+AllowUsers abc
+EOF
+
+sudo -u abc -H ssh-import-id-gh "$GITHUB_USER"
+echo "[sshd] SSH configured for GitHub user: $GITHUB_USER"

@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
     wget \
     git \
     sudo \
+    openssh-server \
+    ssh-import-id \
     python3 \
     python3-pip \
     python3-venv \
@@ -28,6 +30,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     bubblewrap \
+    && rm -f /etc/ssh/ssh_host_* \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
@@ -71,3 +74,9 @@ RUN npm install -g @anthropic-ai/claude-code && \
 RUN npm install -g playwright && \
     npx playwright install --with-deps && \
     rm -rf /var/lib/apt/lists/*
+
+# SSH support (optional, activated by setting GITHUB_USER)
+COPY root/custom-cont-init.d/50-sshd-setup /custom-cont-init.d/50-sshd-setup
+COPY root/custom-services.d/sshd/run /custom-services.d/sshd/run
+RUN chmod 0755 /custom-cont-init.d/50-sshd-setup /custom-services.d/sshd/run
+EXPOSE 22

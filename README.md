@@ -30,6 +30,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - GITHUB_USER=your-github-username # optional, enables SSH
       - PASSWORD=password # optional
       - SUDO_PASSWORD=password # optional
       - DEFAULT_WORKSPACE=/config/workspace # optional
@@ -39,7 +40,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8443:8443
+      - 2222:22  # optional, for SSH access
     restart: unless-stopped
+```
+
+### SSH Access (Optional)
+
+Set `GITHUB_USER` to your GitHub username to enable key-based SSH access. Your public keys are imported automatically from GitHub on container start.
+
+```bash
+ssh -p 2222 abc@your-server
 ```
 
 ## Automated Builds
