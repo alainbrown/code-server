@@ -39,7 +39,7 @@ RUN curl -fsSL https://get.docker.com | sh
 # Install Node.js (Latest Stable) and pnpm
 RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
     apt-get install -y nodejs && \
-    npm install -g pnpm && \
+    npm install -g pnpm vercel && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Go (dynamically grabs the latest version)
