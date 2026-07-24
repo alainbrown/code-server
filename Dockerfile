@@ -76,6 +76,9 @@ RUN npm install -g playwright && \
     npx playwright install --with-deps && \
     rm -rf /var/lib/apt/lists/*
 
+# Install Stripe CLI
+RUN npm install -g @stripe/cli
+
 # SSH support (optional, activated by setting GITHUB_USER)
 COPY root/custom-cont-init.d/50-sshd-setup /custom-cont-init.d/50-sshd-setup
 COPY root/custom-services.d/sshd /custom-services.d/sshd
