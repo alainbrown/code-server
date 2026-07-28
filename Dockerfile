@@ -79,6 +79,9 @@ RUN npm install -g playwright && \
 # Install Stripe CLI
 RUN npm install -g @stripe/cli
 
+# Install Herdr (agent multiplexer)
+RUN curl -fsSL https://herdr.dev/install.sh | sh
+
 # SSH support (optional, activated by setting GITHUB_USER)
 COPY root/custom-cont-init.d/50-sshd-setup /custom-cont-init.d/50-sshd-setup
 COPY root/custom-services.d/sshd /custom-services.d/sshd
