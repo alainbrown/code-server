@@ -16,6 +16,10 @@ This container dynamically installs the latest stable versions of the following 
 - **uv** (Extremely fast Python package and project manager)
 - **Docker CLI** (Enables Docker-out-of-Docker when `/var/run/docker.sock` is mounted)
 - **Utilities**: `ffmpeg`, `sqlite3`, `jq`, `tmux`, `htop`, `tree`, `zip`, `unzip`
+- **Terminal editors**:
+  - `hx` — [Helix](https://helix-editor.com), modal editor with LSP, tree-sitter highlighting and fuzzy pickers built in (no config or plugins needed)
+  - `micro` — [micro](https://micro-editor.github.io), mouse-driven editor with familiar `Ctrl+S` / `Ctrl+C` / `Ctrl+V` bindings
+  - `nano` — from the base image
 
 ## Usage
 
